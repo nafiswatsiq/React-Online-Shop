@@ -25,8 +25,8 @@ export default function SliderByCategories(props) {
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}
       >
-        {props.categories.map((category) => (
-          <SwiperSlide>
+        {props.categories.map((category, index) => (
+          <SwiperSlide key={index}>
             <div className='relative'>
               <img src={category.image} alt="" loading='lazy'/>
               <div className='px-4 absolute w-full bottom-4'>

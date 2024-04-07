@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Base from './layouts/Base'
 import ProductList from './pages/ProductList'
-import ScrollToTop from './components/ScrollToTop'
+import DetailProduct from './pages/DetailProduct'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,20 +16,11 @@ function App() {
         <Route path="/" element={<Base />} >
           <Route index element={<Home />} />
           <Route path="products" element={<ProductList />} />
+          <Route path="products/:id" element={<DetailProduct />} />
         </Route>
       </Routes>
     </Router>
     </>
-    // <BrowserRouter>
-    //   <Routes>
-    //   <Route path="/" element={<Layout />}>
-    //     <Route index element={<Home />} />
-    //     <Route path="blogs" element={<Blogs />} />
-    //     <Route path="contact" element={<Contact />} />
-    //     <Route path="*" element={<NoPage />} />
-    //   </Route>
-    //   </Routes>
-    // </BrowserRouter>
   )
 }
 

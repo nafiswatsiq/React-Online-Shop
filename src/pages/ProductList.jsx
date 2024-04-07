@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ListBestSeller from "../components/ListBestSeller";
 import ScrollToTop from "../components/ScrollToTop";
-import { getProduuctList } from "../api/ProductList";
+import { getProductList } from "../api/ProductList";
 import { IoIosArrowDown } from "react-icons/io"
 
 export default function ProductList() {
@@ -10,13 +10,13 @@ export default function ProductList() {
   const perPage = 8;
 
   useEffect(() => {
-    getProduuctList(perPage, 0).then((response) => {
+    getProductList(perPage, 0).then((response) => {
       setProducts(response);
     });
   }, []);
 
   const loadMore = async() => {
-    const res = await getProduuctList(perPage, products.length);
+    const res = await getProductList(perPage, products.length);
 
     setProducts([...products, ...res]);
   }
