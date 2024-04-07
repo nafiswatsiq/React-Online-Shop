@@ -9,7 +9,7 @@ function SearchNav() {
 
   return (
     <div className="">
-      <CiSearch onClick={() => setOpenSearch(!openSearch)} className="w-6 h-6 font-light"/>
+      <CiSearch onClick={() => setOpenSearch(!openSearch)} className="w-6 h-6 font-light cursor-pointer"/>
       
         <form className={openSearch ? 'max-w-xl mx-auto overflow-hidden  h-12 transition-all duration-200 fixed mt-6 left-32 right-32 -top-2 z-40' : 'max-w-xl mx-auto overflow-hidden h-0 transition-all duration-200 fixed mt-6 left-32 right-32 -top-2 z-40'} >
           <div className="flex">

@@ -3,8 +3,24 @@ import MainImg from "../assets/img/main.png"
 import SliderByCategories from "../components/SliderByCategories"
 import ListBestSeller from "../components/ListBestSeller"
 import SeconImgHome from "../assets/img/second-home.jpg"
+import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { getCategory, getProducts } from "../api/Home"
 
 export default function Home() {
+  const [categories, setCategories] = useState([])
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    getCategory().then((response) => {
+      setCategories(response)
+    })
+
+    getProducts().then((response) => {
+      setProducts(response)
+    })
+  }, [])
+
   return (
     <div className="mt-16">
       <div className="p-8">
@@ -14,9 +30,11 @@ export default function Home() {
               <p className="text-2xl">Classic Exclusive</p>
               <p className="text-4xl font-extrabold mt-6">Women's Collection</p>
               <p className="text-2xl mt-5">UPTO 40% OFF</p>
-              <button type="button" className="text-white flex items-center bg-black font-normal border border-black hover:text-black hover:bg-white focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-5 py-2.5 me-2 mb-2 mt-11">
-              Shop Now <BsArrowRight className="ml-3"/>
-              </button>
+              <Link to={'/products'}>
+                <button type="button" className="text-white flex items-center bg-black font-normal border border-black hover:text-black hover:bg-white focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-5 py-2.5 me-2 mb-2 mt-11">
+                Shop Now <BsArrowRight className="ml-3"/>
+                </button>
+              </Link>
 
             </div>
             <img src={MainImg} alt=""  className=""/>
@@ -25,12 +43,15 @@ export default function Home() {
       </div>
 
       <div className="max-w-[70rem] mx-auto py-10">
-        <SliderByCategories />
+        <SliderByCategories categories={categories}/>
       </div>
 
       <div className="max-w-[70rem] mx-auto py-10">
         <p className="text-3xl text-center">Our Bestseller</p>
-        <ListBestSeller />
+        <ListBestSeller products={products}/>
+        <Link to={'/products'} className="flex items-center justify-center hover:translate-x-2 hover:transition-all hover:duration-200">
+          View All Products <BsArrowRight className="ml-3"/>
+        </Link>
       </div>
 
       <div className="py-10 max-w-[75rem] mx-auto">

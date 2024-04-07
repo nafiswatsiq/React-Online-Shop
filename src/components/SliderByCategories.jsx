@@ -10,8 +10,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import SliderByCategoryNavBtn from './SliderByCategoryNavBtn';
 
-export default function SliderByCategories() {
-
+export default function SliderByCategories(props) {
+  
   return (
     <div>
       <div className='mb-8'>
@@ -25,47 +25,17 @@ export default function SliderByCategories() {
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}
       >
-        <SwiperSlide>
-          <div className='relative'>
-            <img src="https://i.imgur.com/ZANVnHE.jpeg" alt="" />
-            <div className='px-4 absolute w-full bottom-4'>
-              <p className='text-center bg-white py-2 rounded-md'>Electronics</p>
+        {props.categories.map((category) => (
+          <SwiperSlide>
+            <div className='relative'>
+              <img src={category.image} alt="" loading='lazy'/>
+              <div className='px-4 absolute w-full bottom-4'>
+                <p className='text-center bg-white py-2 rounded-md'>{category.name}</p>
+              </div>
             </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className='relative'>
-            <img src="https://i.imgur.com/QkIa5tT.jpeg" alt="" />
-            <div className='px-4 absolute w-full bottom-4'>
-              <p className='text-center bg-white py-2 rounded-md'>Casual Wear</p>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className='relative'>
-            <img src="https://i.imgur.com/QkIa5tT.jpeg" alt="" />
-            <div className='px-4 absolute w-full bottom-4'>
-              <p className='text-center bg-white py-2 rounded-md'>Casual Wear</p>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className='relative'>
-            <img src="https://i.imgur.com/QkIa5tT.jpeg" alt="" />
-            <div className='px-4 absolute w-full bottom-4'>
-              <p className='text-center bg-white py-2 rounded-md'>Casual Wear</p>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className='relative'>
-            <img src="https://i.imgur.com/QkIa5tT.jpeg" alt="" />
-            <div className='px-4 absolute w-full bottom-4'>
-              <p className='text-center bg-white py-2 rounded-md'>Casual Wear</p>
-            </div>
-          </div>
-        </SwiperSlide>
-
+          </SwiperSlide>
+        ))}
+        
         <div className='flex w-full justify-end'>
           <SliderByCategoryNavBtn />
         </div>

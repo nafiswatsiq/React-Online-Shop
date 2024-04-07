@@ -3,13 +3,14 @@ import { CiStar } from "react-icons/ci"
 import { LuArrowLeftRight } from "react-icons/lu"
 import { SlEye } from "react-icons/sl"
 
-export default function ListBestSellerItem({ index, product }) {
+export default function ListBestSellerItem(props) {
+
   const [hover, setHover] = useState(false)
 
   return (
     <div onMouseEnter={() => setHover(!hover)} onMouseLeave={() => setHover(!hover)} className="">
         <div className="relative">
-          <img src="https://i.imgur.com/QkIa5tT.jpeg" alt=""/>
+          <img src={props.product.images[0]} alt="" loading="lazy"/>
 
           {hover && <div className="absolute w-full h-full bg-[#ffffff62] top-0 p-4">
             <div className="flex flex-col justify-between h-full">
@@ -32,9 +33,9 @@ export default function ListBestSellerItem({ index, product }) {
           }
         </div>
         <div className="flex flex-col gap-2 mt-4">
-          <p className="font-bold">Roadstar</p>
-          <p>Printer Cotton T-shrit</p>
-          <p className="text-lg">$38.00 <span className="ml-2 text-gray-400 line-through text-base">$38.00</span></p>
+          <p className="font-bold">{props.product.title}</p>
+          <p>{props.product.category['name']}</p>
+          <p className="text-lg">${props.product.price}.00 <span className="ml-2 text-gray-400 line-through text-base">${props.product.price + 6}.00</span></p>
         </div>
       </div>
   )

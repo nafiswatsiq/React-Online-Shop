@@ -3,6 +3,8 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Base from './layouts/Base'
+import ProductList from './pages/ProductList'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Base />} >
           <Route index element={<Home />} />
+          <Route path="products" element={<ProductList />} />
         </Route>
       </Routes>
     </Router>
