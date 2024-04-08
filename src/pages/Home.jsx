@@ -23,6 +23,7 @@ export default function Home() {
 
   return (
     <div className="mt-16">
+
       <div className="p-8">
         <div className="bg-[#F3F3F3] h-[80vh]">
           <div className="grid grid-cols-2 items-center h-full pl-20">

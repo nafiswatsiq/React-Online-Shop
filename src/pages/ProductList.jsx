@@ -3,6 +3,7 @@ import ListBestSeller from "../components/ListBestSeller";
 import ScrollToTop from "../components/ScrollToTop";
 import { getProductList } from "../api/ProductList";
 import { IoIosArrowDown } from "react-icons/io"
+import BreadcrumbMenu from "../components/BreadrumbMenu";
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
@@ -21,10 +22,22 @@ export default function ProductList() {
     setProducts([...products, ...res]);
   }
 
+  const breadcrumb = [
+    {
+      name: 'Products',
+      url: '/products'
+    }
+  ]
+
   return (
     <>
     <ScrollToTop />
     <div className="mt-16">
+
+      <div className="max-w-[70rem] mx-auto">
+        <BreadcrumbMenu breadcrumb={breadcrumb}/>
+      </div>
+
       <div className="max-w-[70rem] mx-auto py-10">
         <p className="text-3xl text-center">Our Products</p>
         <ListBestSeller products={products}/>
