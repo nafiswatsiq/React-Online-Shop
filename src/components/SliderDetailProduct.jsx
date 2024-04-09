@@ -11,11 +11,12 @@ import 'swiper/css/thumbs';
 // import required modules
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
-export default function SliderDetailProduct() {
+export default function SliderDetailProduct(props) {
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <>
+    <div>
       <div className='relative detail-product'>
         <Swiper
           style={{
@@ -28,12 +29,11 @@ export default function SliderDetailProduct() {
           modules={[FreeMode, Navigation, Thumbs]}
           className="mySwiper2"
         >
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-          </SwiperSlide>
+          {props.images?.map((image, index) => (
+            <SwiperSlide key={index}>
+              <img src={image} />
+            </SwiperSlide>
+          ))}
         </Swiper>
 
         <Swiper
@@ -45,14 +45,13 @@ export default function SliderDetailProduct() {
           modules={[FreeMode, Navigation, Thumbs]}
           className="mySwiper"
         >
-        <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-          </SwiperSlide> 
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-          </SwiperSlide>
+          {props.images?.map((image, index) => (
+            <SwiperSlide key={index}>
+              <img src={image} />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
-    </>
+    </div>
   )
 }

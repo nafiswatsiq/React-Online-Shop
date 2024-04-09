@@ -6,9 +6,9 @@ const getProductList = async (limit, offset) => {
     {
       limit : limit,
       offset : offset
-    });
+    })
 
-  return res.data;
+  return res.data
 }
 
 export {

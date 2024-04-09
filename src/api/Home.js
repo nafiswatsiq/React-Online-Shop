@@ -1,13 +1,13 @@
-import { getApi } from "./Api";
+import { getApi } from "./Api"
 
 const getCategory = async() => {
   const res = await getApi(
     "categories",
     {
       limit : 10,
-    });
+    })
   
-  return res.data;
+  return res.data
 }
 
 const getProducts = async() => {
@@ -16,9 +16,9 @@ const getProducts = async() => {
     {
       limit : 12,
       offset : 0
-    });
+    })
   
-  return res.data;
+  return res.data
 }
 
 export {

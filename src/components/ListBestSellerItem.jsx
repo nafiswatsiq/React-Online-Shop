@@ -2,6 +2,7 @@ import { useState } from "react"
 import { CiStar } from "react-icons/ci"
 import { LuArrowLeftRight } from "react-icons/lu"
 import { SlEye } from "react-icons/sl"
+import { Link } from "react-router-dom"
 
 export default function ListBestSellerItem(props) {
 
@@ -33,7 +34,9 @@ export default function ListBestSellerItem(props) {
           }
         </div>
         <div className="flex flex-col gap-2 mt-4">
-          <p className="font-bold">{props.product.title}</p>
+          <Link to={'/products/' + props.product.id}>
+            <p className="font-bold">{props.product.title}</p>
+          </Link>
           <p>{props.product.category['name']}</p>
           <p className="text-lg">${props.product.price}.00 <span className="ml-2 text-gray-400 line-through text-base">${props.product.price + 6}.00</span></p>
         </div>

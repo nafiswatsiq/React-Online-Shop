@@ -3,7 +3,6 @@ import { HiHome } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 export default function BreadcrumbMenu(props) {
-  console.log(props.breadcrumb)
   return (
     <div className="pt-10">
       <Breadcrumb aria-label="Default breadcrumb example">
