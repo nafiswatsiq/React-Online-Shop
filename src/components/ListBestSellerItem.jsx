@@ -22,9 +22,9 @@ export default function ListBestSellerItem(props) {
                 <span className="p-1.5 bg-white rounded-full">
                   <LuArrowLeftRight className="w-4 h-4"/>
                 </span>
-                <span className="p-1.5 bg-white rounded-full">
+                <Link to={'/products/' + props.product.id} className="p-1.5 bg-white rounded-full">
                   <SlEye className="w-4 h-4"/>
-                </span>
+                </Link>
               </div>
               <button type="button" className="py-2.5 px-5 me-2 mb-2 text-sm w-full font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 ">
                 Add to Chart
