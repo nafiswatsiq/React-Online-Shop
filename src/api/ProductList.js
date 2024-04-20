@@ -1,11 +1,12 @@
 import { getApi } from "./Api"
 
-const getProductList = async (limit, offset) => {
+const getProductList = async (limit, offset, category) => {
   const res = await getApi(
     "products",
     {
       limit : limit,
-      offset : offset
+      offset : offset,
+      category : category
     })
 
   return res.data

@@ -4,20 +4,25 @@ import ScrollToTop from "../components/ScrollToTop";
 import { getProductList } from "../api/ProductList";
 import { IoIosArrowDown } from "react-icons/io"
 import BreadcrumbMenu from "../components/BreadrumbMenu";
+import { useLocation, useParams } from "react-router-dom";
 
 export default function ProductList() {
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
+  const category = searchParams.get('category')
+  
   const [products, setProducts] = useState([]);
 
   const perPage = 8;
 
   useEffect(() => {
-    getProductList(perPage, 0).then((response) => {
+    getProductList(perPage, 0, category ?? '').then((response) => {
       setProducts(response);
     });
   }, []);
 
   const loadMore = async() => {
-    const res = await getProductList(perPage, products.length);
+    const res = await getProductList(perPage, products.length, category ?? '');
 
     setProducts([...products, ...res]);
   }

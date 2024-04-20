@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import SliderByCategoryNavBtn from './SliderByCategoryNavBtn';
+import { Link } from 'react-router-dom';
 
 export default function SliderByCategories(props) {
   
@@ -27,12 +28,12 @@ export default function SliderByCategories(props) {
       >
         {props.categories.map((category, index) => (
           <SwiperSlide key={index}>
-            <div className='relative'>
+            <Link to={`/products?category=${category.slug}`} className='relative'>
               <img src={category.image} alt="" loading='lazy'/>
               <div className='px-4 absolute w-full bottom-4'>
                 <p className='text-center bg-white py-2 rounded-md'>{category.name}</p>
               </div>
-            </div>
+            </Link>
           </SwiperSlide>
         ))}
         
