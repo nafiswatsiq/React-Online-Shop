@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Base from './layouts/Base'
 import ProductList from './pages/ProductList'
 import DetailProduct from './pages/DetailProduct'
+import Login from './pages/Login'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +18,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="products" element={<ProductList />} />
           <Route path="products/:id" element={<DetailProduct />} />
+
+          <Route path="login" element={<Login />} />
         </Route>
       </Routes>
     </Router>

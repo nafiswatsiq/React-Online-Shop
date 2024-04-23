@@ -24,7 +24,7 @@ export default function Navbar() {
               <Link to="">
                 <HiOutlineShoppingBag className="w-5 h-5 font-light"/>
               </Link>
-              <button type="button" className="text-white font-normal border border-black bg-black hover:bg-white hover:text-black rounded-lg text-sm px-5 py-2 text-center">Login</button>
+              <Link to={'/login'} className="text-white font-normal border border-black bg-black hover:bg-white hover:text-black rounded-lg text-sm px-5 py-2 text-center">Login</Link>
             
             </div>
             <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
