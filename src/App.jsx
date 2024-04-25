@@ -6,22 +6,34 @@ import Base from './layouts/Base'
 import ProductList from './pages/ProductList'
 import DetailProduct from './pages/DetailProduct'
 import Login from './pages/Login'
+import AuthProvider, { useAuth } from './hooks/AuthProvider'
+import PrivateRoute from './hooks/PrivateRoute '
 
 function App() {
-  const [count, setCount] = useState(0)
+  const auth = useAuth()
 
   return (
     <>
     <Router>
-      <Routes>
-        <Route path="/" element={<Base />} >
-          <Route index element={<Home />} />
-          <Route path="products" element={<ProductList />} />
-          <Route path="products/:id" element={<DetailProduct />} />
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Base />} >
+            <Route index element={<Home />} />
+            <Route path="products" element={<ProductList />} />
+            <Route path="products/:id" element={<DetailProduct />} />
 
-          <Route path="login" element={<Login />} />
-        </Route>
-      </Routes>
+            <Route path="login" element={<Login />} />
+
+            {/* protected route */}
+            <Route element={<PrivateRoute />} >
+              <Route path="/dashboard" element={<Home />} />
+            </Route>
+
+            <Route path="*" element={<h1>Not Found</h1>} />
+
+          </Route>
+        </Routes>
+      </AuthProvider>
     </Router>
     </>
   )
