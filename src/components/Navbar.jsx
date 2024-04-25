@@ -5,6 +5,8 @@ import Logo from "../assets/img/logo.png"
 import NavDropdown from "./dropdown/NavDropdown"
 import SearchNav from "./SearchNav";
 import { useAuth } from "../hooks/AuthProvider";
+import MiniCart from "./MiniCart";
+import DropdownProfile from "./DropdownProfile";
 
 export default function Navbar() {
   const auth = useAuth()
@@ -41,15 +43,11 @@ export default function Navbar() {
               <Link to="">
                 <CiHeart className="w-6 h-6 font-light"/>
               </Link>
-              <Link to="">
-                <HiOutlineShoppingBag className="w-5 h-5 font-light"/>
-              </Link>
+              
+              <MiniCart/>
+
               {auth.user ?
-              <div className="flex items-center">
-                <span>Hi {auth.user.name}!</span>
-                <img src={auth.user.profile} className="w-9 h-9 ms-3 rounded-full border-2 border-gray-500" alt="" />
-                <button onClick={() => auth.logOut() } className="ms-5 text-white font-normal border border-black bg-black hover:bg-white hover:text-black rounded-lg text-sm px-5 py-2 text-center">Logout</button>
-              </div>
+              <DropdownProfile/>
               :
               <Link to={'/login'} className="text-white font-normal border border-black bg-black hover:bg-white hover:text-black rounded-lg text-sm px-5 py-2 text-center">Login</Link>
               }
