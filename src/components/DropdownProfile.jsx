@@ -1,6 +1,7 @@
 import { Dropdown } from "flowbite-react";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { useAuth } from "../hooks/AuthProvider";
+import { PiSignOutLight } from "react-icons/pi"
 
 export default function DropdownProfile() {
   const auth = useAuth()
@@ -14,7 +15,8 @@ export default function DropdownProfile() {
       <Dropdown.Item>Dashboard</Dropdown.Item>
       <Dropdown.Item>Settings</Dropdown.Item>
       <Dropdown.Item>Earnings</Dropdown.Item>
-      <Dropdown.Item onClick={() => auth.logOut() }>Sign out</Dropdown.Item>
+      <Dropdown.Divider />
+      <Dropdown.Item onClick={() => auth.logOut() } icon={PiSignOutLight}>Sign out</Dropdown.Item>
     </Dropdown>
   )
 }

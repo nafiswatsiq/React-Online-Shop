@@ -29,14 +29,25 @@ const AuthProvider = ({ children }) => {
   }
 
   const logOut = async() => {
-    const res = await logout(token)
+    try {
+      const res = await logout(token)
 
-    if(res.error == false) {
-      setUser("");
-      setToken("");
-      localStorage.removeItem("site");
-      localStorage.removeItem("user");
-      navigate("/login");
+      if(res.error == false) {
+        setUser("");
+        setToken("");
+        localStorage.removeItem("site");
+        localStorage.removeItem("user");
+        navigate("/login");
+      }
+    } catch (err) {
+      if (err.response.status === 401) {
+        alert("Your session has expired. Please login again.");
+        setUser("");
+        setToken("");
+        localStorage.removeItem("site");
+        localStorage.removeItem("user");
+        navigate("/login");
+      }
     }
   }
 
