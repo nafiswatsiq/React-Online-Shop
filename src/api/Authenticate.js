@@ -4,12 +4,16 @@ const apiUrl = process.env.REACT_APP_API_URL
 // const token = localStorage.getItem("site") || ""
 
 const login = async (email, password) => {
-  const res = await axios.post(`${apiUrl}/auth`, {
-    email: email,
-    password: password
-  })
+  try {
+    const res = await axios.post(`${apiUrl}/auth`, {
+      email: email,
+      password: password
+    })
 
-  return res.data
+    return res.data
+  } catch (err) {
+    return err.response.data
+  }
 }
 
 const logout = async (token) => {
@@ -25,7 +29,22 @@ const logout = async (token) => {
   return res.data
 }
 
+const register = async (name, email, password) => {
+  try {
+    const res = await axios.post(`${apiUrl}/register`, {
+      name: name,
+      email: email,
+      password: password
+    })
+
+    return res.data
+  } catch (err) {
+    return err.response.data
+  }
+}
+
 export {
   login,
-  logout
+  logout,
+  register
 }

@@ -48,7 +48,7 @@ export default function Navbar() {
               <div className="flex items-center">
                 <span>Hi {auth.user.name}!</span>
                 <img src={auth.user.profile} className="w-9 h-9 ms-3 rounded-full border-2 border-gray-500" alt="" />
-                {/* <button onClick={() => auth.logOut() } className="ms-5 text-white font-normal border border-black bg-black hover:bg-white hover:text-black rounded-lg text-sm px-5 py-2 text-center">Logout</button> */}
+                <button onClick={() => auth.logOut() } className="ms-5 text-white font-normal border border-black bg-black hover:bg-white hover:text-black rounded-lg text-sm px-5 py-2 text-center">Logout</button>
               </div>
               :
               <Link to={'/login'} className="text-white font-normal border border-black bg-black hover:bg-white hover:text-black rounded-lg text-sm px-5 py-2 text-center">Login</Link>

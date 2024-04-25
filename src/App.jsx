@@ -8,6 +8,7 @@ import DetailProduct from './pages/DetailProduct'
 import Login from './pages/Login'
 import AuthProvider, { useAuth } from './hooks/AuthProvider'
 import PrivateRoute from './hooks/PrivateRoute '
+import Register from './pages/Register'
 
 function App() {
   const auth = useAuth()
@@ -23,6 +24,7 @@ function App() {
             <Route path="products/:id" element={<DetailProduct />} />
 
             <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
 
             {/* protected route */}
             <Route element={<PrivateRoute />} >

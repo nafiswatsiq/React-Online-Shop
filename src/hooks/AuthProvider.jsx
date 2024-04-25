@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { login, logout } from "../api/Authenticate"
+import { login, logout, register } from "../api/Authenticate"
 
 const AuthContext = createContext()
 
@@ -24,7 +24,6 @@ const AuthProvider = ({ children }) => {
 
       throw new Error(res.message)
     } catch (err) {
-      // console.error(err)
       return err.message
     }
   }
@@ -41,7 +40,26 @@ const AuthProvider = ({ children }) => {
     }
   }
 
-  return <AuthContext.Provider value={{ token, user, loginAction, logOut }}>{children}</AuthContext.Provider>
+  const registerAction = async(data) => {
+    try {
+      const res = await register(data.name, data.email, data.password)
+
+      if (res.error == false) {
+        setUser(res.user)
+        setToken(res.token)
+        localStorage.setItem("user", JSON.stringify(res.user))
+        localStorage.setItem("site", res.token)
+        navigate("/dashboard")
+        return
+      }
+
+      throw new Error(JSON.stringify(res.message))
+    } catch (err) {
+      return err.message
+    }
+  }
+
+  return <AuthContext.Provider value={{ token, user, loginAction, logOut, registerAction }}>{children}</AuthContext.Provider>
 }
 
 export default AuthProvider
