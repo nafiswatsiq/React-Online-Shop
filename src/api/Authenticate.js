@@ -43,8 +43,21 @@ const register = async (name, email, password) => {
   }
 }
 
+const getUser = async (token) => {
+  const res = await axios.get(`${apiUrl}/user`,
+  {
+    headers: {
+      ContentType: "application/json",
+      Authorization: `Bearer ${token}`
+    }
+  })
+
+  return res.data
+}
+
 export {
   login,
   logout,
-  register
+  register,
+  getUser
 }

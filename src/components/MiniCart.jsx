@@ -1,19 +1,20 @@
 import { Dropdown } from "flowbite-react";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
-import { CiTrash } from "react-icons/ci"
 import { useAuth } from "../hooks/AuthProvider";
 import { useEffect, useState } from "react";
 import MiniCartItem from "./MiniCartItem";
-import { getCart } from "../api/Cart";
 import cartStore from "../hooks/CartStore";
 
 export default function MiniCart() {
   const auth = useAuth()
+
   const dataCart = cartStore((state) => state.cart)
   const fetchCart = cartStore(state => state.fetchCart)
 
   useEffect(() => {
-    fetchCart()
+    if (auth.token){
+      fetchCart(auth.token)
+    }
   }, [fetchCart])
 
   return (
@@ -39,7 +40,7 @@ export default function MiniCart() {
           <span className="font-bold">Total</span>
           <span>${dataCart.reduce((total, item) => total + item.price * item.quantity, 0)}.00</span>
         </div>
-        <button type="button" className="w-full py-2.5 text-sm font-medium text-white focus:outline-none bg-black rounded-lg hover:bg-gray-900">
+        <button className="w-full py-2.5 text-sm font-medium text-white focus:outline-none bg-black rounded-lg hover:bg-gray-900">
           Checkout
         </button>
       </Dropdown.Item>

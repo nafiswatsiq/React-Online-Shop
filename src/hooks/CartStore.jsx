@@ -9,29 +9,41 @@ const cartStore = create(set => ({
       set({ cart: cartData.cart })
     } catch (error) {
       console.error('Error fetching cart data:', error)
+      if (error.response.status === 401) {
+        
+      }
     }
   },
-  addToCart: async (item) => {
+  addToCart: async (item, token) => {
     try {
       // Menambahkan item ke cart di API
-      await postCart(item)
+      await postCart(item, token)
 
       // Mengambil data cart yang baru dari API
-      const updatedCart = await getCart()
+      const updatedCart = await getCart(token)
 
       // Mengupdate state cart di store
       set({ cart: updatedCart.cart })
+
+      return {
+        error : false,
+        status: 200
+      }
     } catch (error) {
-      console.error('Error adding item to cart:', error)
+      return {
+        error: true,
+        status: error.response.status
+      }
+      // console.error('Error adding item to cart:', error)
     }
   },
-  deleteCart: async (id) => {
+  deleteCart: async (id, token) => {
     try {
       // Menghapus item dari cart di API
-      await deleteCart(id)
+      await deleteCart(id, token)
 
       // Mengambil data cart yang baru dari API
-      const updatedCart = await getCart()
+      const updatedCart = await getCart(token)
 
       // Mengupdate state cart di store
       set({ cart: updatedCart.cart })

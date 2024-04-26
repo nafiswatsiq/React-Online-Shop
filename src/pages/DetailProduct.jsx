@@ -7,10 +7,11 @@ import { useEffect, useState } from "react";
 import { getDetailProduct, getProductsDetailPage } from "../api/DetailProduct";
 import { useParams } from "react-router-dom";
 import ScrollToTop from "../components/ScrollToTop";
-import { postCart } from "../api/Cart";
 import cartStore from "../hooks/CartStore";
+import { useAuth } from "../hooks/AuthProvider";
 
 export default function DetailProduct() {
+  const auth = useAuth()
   const param = useParams()
   const [detailProduct, setDetailProduct] = useState([])
   const [products, setProducts] = useState([])
@@ -35,14 +36,20 @@ export default function DetailProduct() {
   }
 
   const addToCart = () => {
-    return () => {
-      setToCart({
+    return async () => {
+      const postdata = await setToCart(
+        {
         product_id: detailProduct.id,
         quantity: selectedQuantity,
         price: detailProduct.price,
         size: selectedSize
-      })
-      
+        },
+        auth.token
+      )
+
+      if(postdata.status == 401) {
+        auth.logOut()
+      }
     }
   }
 

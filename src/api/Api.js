@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const apiUrl = process.env.REACT_APP_API_URL
-const localToken = localStorage.getItem("site") || ""
+// const localToken = localStorage.getItem("site") || ""
 
 const getApi = async(path, param) => {
   const res = await axios.get(`${apiUrl}/${path}`, {
@@ -11,13 +11,12 @@ const getApi = async(path, param) => {
   return res
 }
 
-const getApiAuth = async(path, param, token) => {
-  const getToken = token || localToken
+const getApiAuth = async(token, path, param) => {
 
   const res = await axios.get(`${apiUrl}/${path}`, {
     headers: {
       ContentType: "application/json",
-      Authorization: `Bearer ${getToken}`
+      Authorization: `Bearer ${token}`
     },
     params: param
   })
@@ -25,11 +24,11 @@ const getApiAuth = async(path, param, token) => {
   return res
 }
 
-const postApi = async(path, data, param) => {
+const postApi = async(token, path, data, param) => {
   const res = await axios.post(`${apiUrl}/${path}`, data, {
     headers: {
       ContentType: "application/json",
-      Authorization: `Bearer ${localToken}`
+      Authorization: `Bearer ${token}`
     },
     params: param
   })
@@ -37,11 +36,11 @@ const postApi = async(path, data, param) => {
   return res
 }
 
-const deleteApi = async(path, param) => {
+const deleteApi = async(token, path, param) => {
   const res = await axios.delete(`${apiUrl}/${path}`, {
     headers: {
       ContentType: "application/json",
-      Authorization: `Bearer ${localToken}`
+      Authorization: `Bearer ${token}`
     },
     params: param
   })

@@ -23,7 +23,7 @@ export default function SliderByCategories(props) {
         spaceBetween={30}
         slidesPerView={4}
         // navigation
-        onSwiper={(swiper) => console.log(swiper)}
+        // onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}
       >
         {props.categories.map((category, index) => (

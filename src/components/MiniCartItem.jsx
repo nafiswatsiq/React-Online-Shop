@@ -1,13 +1,15 @@
 import { CiTrash } from "react-icons/ci"
 import { useState } from "react";
 import cartStore from "../hooks/CartStore";
+import { useAuth } from "../hooks/AuthProvider";
 
 export default function MiniCartItem({ item }) {
+  const auth = useAuth()
   const [openTrash, setOpenTrash] = useState(false)
   const deleteCart  = cartStore(state => state.deleteCart)
 
   const deleteItem = () => {
-    deleteCart(item.id)
+    deleteCart(item.id, auth.token)
   }
 
   return (

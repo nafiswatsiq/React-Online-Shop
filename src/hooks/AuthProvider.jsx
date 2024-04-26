@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { login, logout, register } from "../api/Authenticate"
+import { getUser, login, logout, register } from "../api/Authenticate"
 import cartStore from "./CartStore"
 
 const AuthContext = createContext()
@@ -24,9 +24,11 @@ const AuthProvider = ({ children }) => {
 
         fetchCart(res.token)
 
-        navigate("/dashboard")
+        navigate("/")
         
-        return
+        return {
+          error: false
+        }
       }
 
       throw new Error(res.message)
@@ -53,7 +55,7 @@ const AuthProvider = ({ children }) => {
       }
     } catch (err) {
       if (err.response.status === 401) {
-        alert("Your session has expired. Please login again.");
+
         setUser("");
         setToken("");
         localStorage.removeItem("site");
