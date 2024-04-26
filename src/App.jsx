@@ -12,7 +12,7 @@ import Register from './pages/Register'
 
 function App() {
   const auth = useAuth()
-
+  
   return (
     <>
     <Router>

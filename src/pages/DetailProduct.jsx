@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { getDetailProduct, getProductsDetailPage } from "../api/DetailProduct";
 import { useParams } from "react-router-dom";
 import ScrollToTop from "../components/ScrollToTop";
+import { postCart } from "../api/Cart";
+import cartStore from "../hooks/CartStore";
 
 export default function DetailProduct() {
   const param = useParams()
@@ -14,6 +16,7 @@ export default function DetailProduct() {
   const [products, setProducts] = useState([])
   const [selectedSize, setSize] = useState()
   const [selectedQuantity, setQuantity] = useState(1)
+  const setToCart  = cartStore(state => state.addToCart)
 
   useEffect(() => {
     getDetailProduct(param.id).then((response) => {
@@ -29,6 +32,18 @@ export default function DetailProduct() {
   let getSizes
   if (detailProduct.additional) {
     getSizes = detailProduct.additional.split(',')
+  }
+
+  const addToCart = () => {
+    return () => {
+      setToCart({
+        product_id: detailProduct.id,
+        quantity: selectedQuantity,
+        price: detailProduct.price,
+        size: selectedSize
+      })
+      
+    }
   }
 
   const breadcrumb = [
@@ -105,7 +120,7 @@ export default function DetailProduct() {
                   </div>
 
                   <div className="flex-grow">
-                    <button type="button" className="text-white items-center w-full bg-black font-normal border border-black hover:text-black hover:bg-white focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-5 py-2.5 ">
+                    <button onClick={addToCart()} type="button" className="text-white items-center w-full bg-black font-normal border border-black hover:text-black hover:bg-white focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-5 py-2.5 ">
                       Add to Cart
                     </button>
                   </div>

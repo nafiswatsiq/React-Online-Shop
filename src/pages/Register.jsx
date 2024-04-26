@@ -19,8 +19,8 @@ export default function Register() {
   const handleSubmit = async(e) => {
     e.preventDefault()
     if (input.username !== "" && input.password !== "" && input.email !== "") {
-      const login = await auth.registerAction(input)
-      setError(JSON.parse(login))
+      const register = await auth.registerAction(input)
+      setError(JSON.parse(register))
       return
     }
 

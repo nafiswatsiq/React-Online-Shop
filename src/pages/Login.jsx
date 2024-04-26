@@ -5,6 +5,7 @@ import { Link, Navigate } from "react-router-dom"
 export default function Login() {  
   const auth = useAuth()
   const [error, setError] = useState(null)
+  const [onSubmitting, setOnSubmitting] = useState(false)
 
   if (auth.user) {
     return <Navigate to="/dashboard" />
@@ -17,9 +18,16 @@ export default function Login() {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
+    setOnSubmitting(true)
+
     if (input.username !== "" && input.password !== "") {
       const login = await auth.loginAction(input)
-      setError(login)
+
+      if (login.error) {
+        setOnSubmitting(false)
+        setError(login.message)
+      }
+
       return
     }
 
@@ -63,7 +71,7 @@ export default function Login() {
                 </div>
                 <Link to={'/'} className="text-sm font-medium text-black hover:underline dark:text-primary-500">Forgot password?</Link>
               </div>
-              <button type="submit" className="w-full text-white bg-black hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
+              <button type="submit" disabled={onSubmitting} className={`w-full text-white bg-black hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center ${onSubmitting ? 'opacity-70 cursor-progress' : ''}`}>Sign in</button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don’t have an account yet? <Link to={'/register'} className="font-medium text-black hover:underline dark:text-primary-500">Sign up</Link>
               </p>
