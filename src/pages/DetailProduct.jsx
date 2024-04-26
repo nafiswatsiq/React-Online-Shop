@@ -17,6 +17,7 @@ export default function DetailProduct() {
   const [products, setProducts] = useState([])
   const [selectedSize, setSize] = useState()
   const [selectedQuantity, setQuantity] = useState(1)
+  const [onAddToCart, setOnAddToCart] = useState(false)
   const setToCart  = cartStore(state => state.addToCart)
 
   useEffect(() => {
@@ -37,6 +38,8 @@ export default function DetailProduct() {
 
   const addToCart = () => {
     return async () => {
+      setOnAddToCart(true)
+
       const postdata = await setToCart(
         {
         product_id: detailProduct.id,
@@ -47,7 +50,11 @@ export default function DetailProduct() {
         auth.token
       )
 
-      if(postdata.status == 401) {
+      if (postdata.status == 200) {
+
+        setOnAddToCart(false)
+      } else if (postdata.status == 401) {
+
         auth.logOut()
       }
     }
@@ -127,7 +134,7 @@ export default function DetailProduct() {
                   </div>
 
                   <div className="flex-grow">
-                    <button onClick={addToCart()} type="button" className="text-white items-center w-full bg-black font-normal border border-black hover:text-black hover:bg-white focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-5 py-2.5 ">
+                    <button onClick={addToCart()} type="button" disabled={onAddToCart} className={`text-white items-center w-full bg-black font-normal border border-black hover:text-black hover:bg-white focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-5 py-2.5 ${onAddToCart ? 'cursor-not-allowed' : ''}`}>
                       Add to Cart
                     </button>
                   </div>

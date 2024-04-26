@@ -46,7 +46,7 @@ export default function Login() {
   return (
     <>
       <ScrollToTop/>
-      
+
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -75,7 +75,7 @@ export default function Login() {
                   </div>
                   <Link to={'/'} className="text-sm font-medium text-black hover:underline dark:text-primary-500">Forgot password?</Link>
                 </div>
-                <button type="submit" disabled={onSubmitting} className={`w-full text-white bg-black hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center ${onSubmitting ? 'opacity-70 cursor-progress' : ''}`}>Sign in</button>
+                <button type="submit" disabled={onSubmitting} className={`w-full text-white bg-black hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center ${onSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}>Sign in</button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet? <Link to={'/register'} className="font-medium text-black hover:underline dark:text-primary-500">Sign up</Link>
                 </p>

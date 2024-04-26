@@ -28,8 +28,8 @@ export default function MiniCartItem({ item }) {
           </label>
         </div>
       </div>
-      <div className={openTrash == true ? "w-12 flex items-center justify-center bg-black transition-all duration-300 absolute right-0 h-full" : "w-0 flex items-center justify-center bg-black transition-all duration-300 absolute right-0 h-full"}>
-        <CiTrash onClick={deleteItem} className="w-6 h-6 text-white"/>
+      <div onClick={deleteItem} className={openTrash == true ? "w-12 flex items-center justify-center bg-black transition-all duration-300 absolute right-0 h-full" : "w-0 flex items-center justify-center bg-black transition-all duration-300 absolute right-0 h-full"}>
+        <CiTrash className="w-6 h-6 text-white"/>
       </div>
     </div>
   )
