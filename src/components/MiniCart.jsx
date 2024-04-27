@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/AuthProvider";
 import { useEffect, useState } from "react";
 import MiniCartItem from "./MiniCartItem";
 import cartStore from "../hooks/CartStore";
+import { Link } from "react-router-dom";
 
 export default function MiniCart() {
   const auth = useAuth()
@@ -40,9 +41,9 @@ export default function MiniCart() {
           <span className="font-bold">Total</span>
           <span>${dataCart.reduce((total, item) => total + item.price * item.quantity, 0)}.00</span>
         </div>
-        <button className="w-full py-2.5 text-sm font-medium text-white focus:outline-none bg-black rounded-lg hover:bg-gray-900">
+        <Link to={'/checkout'} className="w-full py-2.5 text-sm font-medium text-white focus:outline-none bg-black rounded-lg hover:bg-gray-900">
           Checkout
-        </button>
+        </Link>
       </Dropdown.Item>
     </Dropdown>
   )

@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { deleteCart, getCart, postCart } from "../api/Cart"
+import { deleteCart, getCart, postCart, updateCart } from "../api/Cart"
 
 const cartStore = create(set => ({
   cart: [],
@@ -18,6 +18,29 @@ const cartStore = create(set => ({
     try {
       // Menambahkan item ke cart di API
       await postCart(item, token)
+
+      // Mengambil data cart yang baru dari API
+      const updatedCart = await getCart(token)
+
+      // Mengupdate state cart di store
+      set({ cart: updatedCart.cart })
+
+      return {
+        error : false,
+        status: 200
+      }
+    } catch (error) {
+      return {
+        error: true,
+        status: error.response.status
+      }
+      // console.error('Error adding item to cart:', error)
+    }
+  },
+  updateCart: async (id, item, token) => {
+    try {
+      // Menambahkan item ke cart di API
+      await updateCart(id, item, token)
 
       // Mengambil data cart yang baru dari API
       const updatedCart = await getCart(token)

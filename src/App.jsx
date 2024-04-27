@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import AuthProvider, { useAuth } from './hooks/AuthProvider'
 import PrivateRoute from './hooks/PrivateRoute '
 import Register from './pages/Register'
+import Checkout from './pages/Checkout'
 
 function App() {
 
@@ -28,11 +29,12 @@ function App() {
             {/* protected route */}
             <Route element={<PrivateRoute />} >
               <Route path="/dashboard" element={<Home />} />
+              <Route path="/checkout" element={<Checkout />} />
             </Route>
 
-            <Route path="*" element={<h1>Not Found</h1>} />
 
           </Route>
+          <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
       </AuthProvider>
     </Router>
