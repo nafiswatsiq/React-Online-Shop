@@ -93,6 +93,23 @@
   object-fit: cover;
 }
 
+.search-select input[type="text"]:focus {
+  box-shadow: none;
+}
+
+.search-select .css-t3ipsp-control:hover{
+  border: 1px solid #000;
+}
+
+.search-select .css-t3ipsp-control{
+  box-shadow: 0 0 0 1px #000;
+  border-color: #000;
+}
+
+.search-select > div {
+  border-radius: 0.5rem;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

@@ -10,6 +10,7 @@ import AuthProvider, { useAuth } from './hooks/AuthProvider'
 import PrivateRoute from './hooks/PrivateRoute '
 import Register from './pages/Register'
 import Checkout from './pages/Checkout'
+import Order from './pages/Order'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
             <Route element={<PrivateRoute />} >
               <Route path="/dashboard" element={<Home />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/order" element={<Order />} />
             </Route>
 
 

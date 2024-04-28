@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/AuthProvider";
 import { getCart } from "../api/Cart";
 import cartStore from "../hooks/CartStore";
+import { Link, Navigate } from "react-router-dom";
 
 export default function Checkout() {
   const auth = useAuth()
@@ -89,9 +90,11 @@ export default function Checkout() {
                       </div>
                     </div>
                     <div className="mt-1">
-                      <button type="button" className="bg-black text-white w-full text-sm py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black">
-                        Proceed to Checkout
-                      </button>
+                      <Link to={'/order'}>
+                        <button type="button" className="bg-black text-white w-full text-sm py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black">
+                          Proceed to Checkout
+                        </button>
+                      </Link>
                     </div>
                   </div>
               </div>
