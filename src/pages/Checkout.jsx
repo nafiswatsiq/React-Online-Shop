@@ -64,7 +64,7 @@ export default function Checkout() {
                       <p>Subtotal</p>
                     </div>
                     <div>
-                      <p>${dataCart.reduce((total, item) => total + item.price * item.quantity, 0)}.00</p>
+                      <p>Rp. {dataCart.reduce((total, item) => total + item.price * item.quantity, 0)}</p>
                     </div>
                   </div>
                   <div className="border-b pb-4">
@@ -86,7 +86,7 @@ export default function Checkout() {
                         <p>Total</p>
                       </div>
                       <div>
-                        <p>${dataCart.reduce((total, item) => total + item.price * item.quantity, 0) }.00</p>
+                        <p>Rp. {dataCart.reduce((total, item) => total + item.price * item.quantity, 0) }</p>
                       </div>
                     </div>
                     <div className="mt-1">

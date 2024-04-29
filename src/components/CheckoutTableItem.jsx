@@ -53,7 +53,7 @@ export default function CheckoutTableItem({item}) {
           </div>
         </div>
       </Table.Cell>
-      <Table.Cell>${item.price}.00</Table.Cell>
+      <Table.Cell>Rp. {item.price}</Table.Cell>
       <Table.Cell>
         <div className="max-w-xs">
           <div className="relative flex items-center max-w-[7rem]">
@@ -72,7 +72,7 @@ export default function CheckoutTableItem({item}) {
           </div>
         </div>
       </Table.Cell>
-      <Table.Cell>${item.price * selectedQuantity}.00</Table.Cell>
+      <Table.Cell>Rp. {item.price * selectedQuantity}</Table.Cell>
       <Table.Cell>
         <CiTrash onClick={deleteCartItem} className="w-6 h-6 text-red-600 cursor-pointer"/>
       </Table.Cell>

@@ -38,7 +38,7 @@ export default function ListBestSellerItem(props) {
             <p className="font-bold">{props.product.title}</p>
           </Link>
           <p>{props.product.category['name']}</p>
-          <p className="text-lg">${props.product.price}.00 <span className="ml-2 text-gray-400 line-through text-base">${props.product.price + 6}.00</span></p>
+          <p className="text-lg">Rp. {props.product.price} <span className="ml-2 text-gray-400 line-through text-base">Rp.{props.product.price + 6}</span></p>
         </div>
       </div>
   )
