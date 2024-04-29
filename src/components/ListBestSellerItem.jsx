@@ -3,6 +3,7 @@ import { CiStar } from "react-icons/ci"
 import { LuArrowLeftRight } from "react-icons/lu"
 import { SlEye } from "react-icons/sl"
 import { Link } from "react-router-dom"
+import { formatThousands } from "../Utils/NumberUtils"
 
 export default function ListBestSellerItem(props) {
 
@@ -38,7 +39,7 @@ export default function ListBestSellerItem(props) {
             <p className="font-bold">{props.product.title}</p>
           </Link>
           <p>{props.product.category['name']}</p>
-          <p className="text-lg">Rp. {props.product.price} <span className="ml-2 text-gray-400 line-through text-base">Rp.{props.product.price + 6}</span></p>
+          <p className="text-lg">Rp. {formatThousands(props.product.price)} <span className="ml-2 text-gray-400 line-through text-base">Rp.{formatThousands(props.product.price + 6000)}</span></p>
         </div>
       </div>
   )

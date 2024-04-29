@@ -6,6 +6,7 @@ import { useAuth } from "../hooks/AuthProvider";
 import { getCart } from "../api/Cart";
 import cartStore from "../hooks/CartStore";
 import { Link, Navigate } from "react-router-dom";
+import { formatThousands } from "../Utils/NumberUtils"
 
 export default function Checkout() {
   const auth = useAuth()
@@ -64,7 +65,7 @@ export default function Checkout() {
                       <p>Subtotal</p>
                     </div>
                     <div>
-                      <p>Rp. {dataCart.reduce((total, item) => total + item.price * item.quantity, 0)}</p>
+                      <p>Rp. {formatThousands(dataCart.reduce((total, item) => total + item.price * item.quantity, 0))}</p>
                     </div>
                   </div>
                   <div className="border-b pb-4">
@@ -86,7 +87,7 @@ export default function Checkout() {
                         <p>Total</p>
                       </div>
                       <div>
-                        <p>Rp. {dataCart.reduce((total, item) => total + item.price * item.quantity, 0) }</p>
+                        <p>Rp. {formatThousands(dataCart.reduce((total, item) => total + item.price * item.quantity, 0)) }</p>
                       </div>
                     </div>
                     <div className="mt-1">

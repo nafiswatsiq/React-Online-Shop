@@ -2,7 +2,8 @@ import { CiTrash } from "react-icons/ci"
 import { Table } from "flowbite-react"
 import { useEffect, useState } from "react";
 import cartStore from "../hooks/CartStore";
-import { useAuth } from "../hooks/AuthProvider";
+import { useAuth } from "../hooks/AuthProvider"
+import { formatThousands } from "../Utils/NumberUtils"
 
 export default function CheckoutTableItem({item}) {
   const auth = useAuth()
@@ -53,7 +54,7 @@ export default function CheckoutTableItem({item}) {
           </div>
         </div>
       </Table.Cell>
-      <Table.Cell>Rp. {item.price}</Table.Cell>
+      <Table.Cell>Rp. {formatThousands(item.price)}</Table.Cell>
       <Table.Cell>
         <div className="max-w-xs">
           <div className="relative flex items-center max-w-[7rem]">
@@ -72,7 +73,7 @@ export default function CheckoutTableItem({item}) {
           </div>
         </div>
       </Table.Cell>
-      <Table.Cell>Rp. {item.price * selectedQuantity}</Table.Cell>
+      <Table.Cell>Rp. {formatThousands(item.price * selectedQuantity)}</Table.Cell>
       <Table.Cell>
         <CiTrash onClick={deleteCartItem} className="w-6 h-6 text-red-600 cursor-pointer"/>
       </Table.Cell>

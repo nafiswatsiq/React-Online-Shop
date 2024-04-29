@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import MiniCartItem from "./MiniCartItem";
 import cartStore from "../hooks/CartStore";
 import { Link } from "react-router-dom";
+import { formatThousands } from "../Utils/NumberUtils"
 
 export default function MiniCart() {
   const auth = useAuth()
@@ -39,7 +40,7 @@ export default function MiniCart() {
       <Dropdown.Item className="flex flex-col">
         <div className="flex justify-between items-center mb-3 mt-1 w-full">
           <span className="font-bold">Total</span>
-          <span>${dataCart.reduce((total, item) => total + item.price * item.quantity, 0)}.00</span>
+          <span>Rp. {formatThousands(dataCart.reduce((total, item) => total + item.price * item.quantity, 0))}</span>
         </div>
         <Link to={'/checkout'} className="w-full py-2.5 text-sm font-medium text-white focus:outline-none bg-black rounded-lg hover:bg-gray-900">
           Checkout

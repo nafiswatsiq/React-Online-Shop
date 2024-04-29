@@ -1,7 +1,8 @@
 import { CiTrash } from "react-icons/ci"
 import { useState } from "react";
 import cartStore from "../hooks/CartStore";
-import { useAuth } from "../hooks/AuthProvider";
+import { useAuth } from "../hooks/AuthProvider"
+import { formatThousands } from "../Utils/NumberUtils"
 
 export default function MiniCartItem({ item }) {
   const auth = useAuth()
@@ -21,7 +22,7 @@ export default function MiniCartItem({ item }) {
         <div className="ms-2 text-sm text-start">
           <label htmlFor="helper-checkbox-1" className="font-medium h-full flex flex-col justify-between text-gray-900 dark:text-gray-300">
             <p className="text-xs font-normal text-gray-900 dark:text-gray-300 text-ellipsis overflow-hidden truncate w-56">{item.product.title}</p>
-            <div>{item.quantity} x Rp. {item.price}</div>
+            <div>{item.quantity} x Rp. {formatThousands(item.price)}</div>
             {item.size && (
               <p className="text-xs font-normal text-gray-500 dark:text-gray-300">Size: {item.size}</p>
             )}

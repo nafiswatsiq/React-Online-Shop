@@ -1,4 +1,5 @@
 import cartStore from "../hooks/CartStore"
+import { formatThousands } from "../Utils/NumberUtils"
 
 export default function SubtotalCard() {
   const dataCart = cartStore((state) => state.cart)
@@ -10,7 +11,7 @@ export default function SubtotalCard() {
           <p>Subtotal</p>
         </div>
         <div>
-          <p>Rp. {dataCart.reduce((total, item) => total + item.price * item.quantity, 0) }</p>
+          <p>Rp. {formatThousands(dataCart.reduce((total, item) => total + item.price * item.quantity, 0)) }</p>
         </div>
       </div>
       <div className="mt-4 ">
@@ -27,7 +28,7 @@ export default function SubtotalCard() {
             <p>Total</p>
           </div>
           <div>
-            <p>Rp. {dataCart.reduce((total, item) => total + item.price * item.quantity, 0) }</p>
+            <p>Rp. {formatThousands(dataCart.reduce((total, item) => total + item.price * item.quantity, 0))}</p>
           </div>
         </div>
       </div>

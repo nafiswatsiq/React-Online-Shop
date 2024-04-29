@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import ScrollToTop from "../components/ScrollToTop";
 import cartStore from "../hooks/CartStore";
 import { useAuth } from "../hooks/AuthProvider";
+import { formatThousands } from "../Utils/NumberUtils"
 
 export default function DetailProduct() {
   const auth = useAuth()
@@ -96,7 +97,7 @@ export default function DetailProduct() {
                   <FaStar className="text-yellow-400 text-lg"/>
                 </div>
 
-                <p className="text-lg mt-4">${detailProduct.price}.00 <span className="ml-2 text-gray-400 line-through text-base">${detailProduct.price + 6}.00</span></p>
+                <p className="text-lg mt-4">Rp. {formatThousands(detailProduct.price + 0)} <span className="ml-2 text-gray-400 line-through text-base">Rp. {formatThousands(detailProduct.price + 6000)}</span></p>
                 <p className="mt-4">{detailProduct.description}</p>
 
                 {detailProduct.additional && (
