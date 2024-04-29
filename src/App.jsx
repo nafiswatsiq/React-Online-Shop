@@ -11,6 +11,7 @@ import PrivateRoute from './hooks/PrivateRoute '
 import Register from './pages/Register'
 import Checkout from './pages/Checkout'
 import Order from './pages/Order'
+import CheckSession from './hooks/CheckSession'
 
 function App() {
 
@@ -19,22 +20,24 @@ function App() {
     <Router>
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<Base />} >
-            <Route index element={<Home />} />
-            <Route path="products" element={<ProductList />} />
-            <Route path="products/:id" element={<DetailProduct />} />
+          <Route element={<CheckSession/>}>
+            <Route path="/" element={<Base />} >
+              <Route index element={<Home />} />
+              <Route path="products" element={<ProductList />} />
+              <Route path="products/:id" element={<DetailProduct />} />
 
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
 
-            {/* protected route */}
-            <Route element={<PrivateRoute />} >
-              <Route path="/dashboard" element={<Home />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/order" element={<Order />} />
+              {/* protected route */}
+              <Route element={<PrivateRoute />} >
+                <Route path="/dashboard" element={<Home />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/order" element={<Order />} />
+              </Route>
+
+
             </Route>
-
-
           </Route>
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>

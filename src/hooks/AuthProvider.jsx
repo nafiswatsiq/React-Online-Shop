@@ -14,9 +14,13 @@ const AuthProvider = ({ children }) => {
 
   const loginAction = async (data) => {
     try {
+      const expirationDate = new Date().getTime() + (3 * 60 * 60 * 1000)
       const res = await login(data.email, data.password)
 
       if (res.error == false) {
+        const user = res.user
+        user.expiresAt = expirationDate
+
         setUser(res.user)
         setToken(res.token)
         localStorage.setItem("user", JSON.stringify(res.user))
