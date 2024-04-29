@@ -23,11 +23,11 @@ export default function AddNewAddress() {
               </div>
               <div>
                 <label htmlFor="company" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Province</label>
-                <Select options={options} className='search-select rounded-lg'/>
+                <Select options={options} defaultValue={options[2]} className='search-select rounded-lg'/>
               </div>  
               <div>
                 <label htmlFor="company" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
-                <Select options={options} className='search-select rounded-lg'/>
+                <Select options={options} defaultValue={options[2]} className='search-select rounded-lg'/>
               </div>  
               <div>
                 <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full address</label>
