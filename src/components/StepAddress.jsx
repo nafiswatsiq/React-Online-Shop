@@ -6,7 +6,6 @@ import { FaRegEdit } from "react-icons/fa"
 import { CiTrash } from "react-icons/ci"
 import { Modal} from "flowbite-react"
 import { ModalEditAddress } from "./ModalEditAddress"
-import SubtotalCard from "./SubtotalCard"
 
 export default function StepAddress() {
   const auth = useAuth()
@@ -39,14 +38,13 @@ export default function StepAddress() {
   }
 
   return (
-    <div className="flex">
-      <div className="w-9/12 overflow-y-auto">
+    <div className="">
         <h1 className="font-bold text-xl">Select a delivery Address</h1>
 
         {address.length == 0 ?
           <p className="mt-4">You don't have any address, please add a new address</p> : ''
         }
-        <div className="grid grid-cols-3 gap-6 mt-8">
+        <div className="grid grid-cols-2 gap-6 mt-8">
           {address.map((data, index) => (
             <div onClick={handleSelectAddress(data.id)} key={index} className={`border rounded-md p-4 cursor-pointer ${selectedAddress == data.id ? 'border-2 shadow-lg':''}`}>
               <div className="flex flex-col gap-y-1">
@@ -74,11 +72,6 @@ export default function StepAddress() {
           <ModalEditAddress/>
         </Modal>
         
-      </div>
-
-      <div className="w-3/12 pl-4">
-        <SubtotalCard/>
-      </div>
     </div>
   )
 }

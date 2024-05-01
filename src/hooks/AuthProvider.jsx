@@ -21,9 +21,9 @@ const AuthProvider = ({ children }) => {
         const user = res.user
         user.expiresAt = expirationDate
 
-        setUser(res.user)
+        setUser(user)
         setToken(res.token)
-        localStorage.setItem("user", JSON.stringify(res.user))
+        localStorage.setItem("user", JSON.stringify(user))
         localStorage.setItem("site", res.token)
 
         fetchCart(res.token)
@@ -71,12 +71,16 @@ const AuthProvider = ({ children }) => {
 
   const registerAction = async(data) => {
     try {
+      const expirationDate = new Date().getTime() + (3 * 60 * 60 * 1000)
       const res = await register(data.name, data.email, data.password)
 
       if (res.error == false) {
-        setUser(res.user)
+        const user = res.user
+        user.expiresAt = expirationDate
+
+        setUser(user)
         setToken(res.token)
-        localStorage.setItem("user", JSON.stringify(res.user))
+        localStorage.setItem("user", JSON.stringify(user))
         localStorage.setItem("site", res.token)
         navigate("/dashboard")
         return
