@@ -18,7 +18,28 @@ const getCity = async (token, provinceId) => {
   return res.data
 }
 
+const getExpedition = async (token) => {
+  const res = await getApiAuth(
+    token,
+    "delivery/expedition"
+  )
+
+  return res.data
+}
+
+const getCost = async(token, data) => {
+  const res = await postApi(
+    token,
+    "delivery/cost",
+    data
+  )
+
+  return res.data
+}
+
 export {
   getProvince,
   getCity,
+  getExpedition,
+  getCost
 }

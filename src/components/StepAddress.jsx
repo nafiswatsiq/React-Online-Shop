@@ -13,6 +13,7 @@ export default function StepAddress() {
   const fetchAddress = addressHook(state => state.fetchAddress)
   const address = addressHook(state => state.address)
   const setIdAddress = addressHook(state => state.setIdAddress)
+  const idAddress = addressHook(state => state.idAddress)
   const deleteAddress = addressHook(state => state.deleteAddress)
   const [openModal, setOpenModal] = useState(false)
 
@@ -20,10 +21,10 @@ export default function StepAddress() {
     fetchAddress(auth.token)
   }, [])
 
-  const handleSelectAddress = (id) => {
+  const handleSelectAddress = (id, city_id) => {
     return () => {
       setSelectedAddress(selectedAddress == id ? null : id)
-      setIdAddress(selectedAddress == id ? null : id)
+      setIdAddress(selectedAddress == id ? null : {id, city_id})
     }
   }
 
@@ -46,7 +47,7 @@ export default function StepAddress() {
         }
         <div className="grid grid-cols-2 gap-6 mt-8">
           {address.map((data, index) => (
-            <div onClick={handleSelectAddress(data.id)} key={index} className={`border rounded-md p-4 cursor-pointer ${selectedAddress == data.id ? 'border-2 shadow-lg':''}`}>
+            <div onClick={handleSelectAddress(data.id, data.city_id)} key={index} className={`border rounded-md p-4 cursor-pointer ${(idAddress ? idAddress.id : null) == data.id ? 'border-2 shadow-lg border-gray-900':''}`}>
               <div className="flex flex-col gap-y-1">
                 <p className="font-bold text-lg mb-2">{data.name}</p>
                 <p>{data.province}, {data.city} ({data.postal_code})</p>
