@@ -12,6 +12,7 @@ import Register from './pages/Register'
 import Checkout from './pages/Checkout'
 import Order from './pages/Order'
 import CheckSession from './hooks/CheckSession'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
 

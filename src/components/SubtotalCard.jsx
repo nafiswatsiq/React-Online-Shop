@@ -19,7 +19,7 @@ export default function SubtotalCard() {
     getExpedition(auth.token).then((response) => {
       setExpediton(response.data)
     })
-  }, [])
+  }, [idAddress])
 
   const handleSelectExpedition = async(e) => {
     setCosts([])
@@ -117,7 +117,7 @@ export default function SubtotalCard() {
             <p>Total</p>
           </div>
           <div>
-            <p>Rp. {formatThousands(dataCart.reduce((total, item) => total + item.price * item.quantity, 0))}</p>
+            <p>Rp. {formatThousands(dataCart.reduce((total, item) => total + item.price * item.quantity, 0) + (!costSelected ? 0 : costSelected.value))}</p>
           </div>
         </div>
       </div>

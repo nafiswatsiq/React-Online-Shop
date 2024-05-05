@@ -10,6 +10,7 @@ import ScrollToTop from "../components/ScrollToTop";
 import cartStore from "../hooks/CartStore";
 import { useAuth } from "../hooks/AuthProvider";
 import { formatThousands } from "../Utils/NumberUtils"
+import { toast } from "react-toastify";
 
 export default function DetailProduct() {
   const auth = useAuth()
@@ -29,7 +30,7 @@ export default function DetailProduct() {
     getProductsDetailPage().then((response) => {
       setProducts(response)
     })
-  }, [])
+  }, [param])
 
   
   let getSizes
@@ -54,6 +55,7 @@ export default function DetailProduct() {
       if (postdata.status == 200) {
 
         setOnAddToCart(false)
+        toast.success('Product added to cart')
       } else if (postdata.status == 401) {
 
         auth.logOut()
