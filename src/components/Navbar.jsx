@@ -1,5 +1,3 @@
-import { CiSearch, CiHeart } from "react-icons/ci";
-import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import Logo from "../assets/img/logo.png"
 import NavDropdown from "./dropdown/NavDropdown"
@@ -7,6 +5,7 @@ import SearchNav from "./SearchNav";
 import { useAuth } from "../hooks/AuthProvider";
 import MiniCart from "./MiniCart";
 import DropdownProfile from "./DropdownProfile";
+import LikesList from "./LikesList";
 
 export default function Navbar() {
   const auth = useAuth()
@@ -40,9 +39,10 @@ export default function Navbar() {
             <div className="flex items-center gap-4">
               <SearchNav/>
               
-              <Link to="">
+              {/* <Link to="">
                 <CiHeart className="w-6 h-6 font-light"/>
-              </Link>
+              </Link> */}
+              <LikesList/>
               
               <MiniCart/>
 

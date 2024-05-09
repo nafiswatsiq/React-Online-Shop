@@ -11,6 +11,9 @@ import cartStore from "../hooks/CartStore";
 import { useAuth } from "../hooks/AuthProvider";
 import { formatThousands } from "../Utils/NumberUtils"
 import { toast } from "react-toastify";
+import { IoMdHeart } from "react-icons/io"
+import likeStore from "../hooks/LikeHook"
+import { motion } from "framer-motion"
 
 export default function DetailProduct() {
   const auth = useAuth()
@@ -21,8 +24,14 @@ export default function DetailProduct() {
   const [selectedQuantity, setQuantity] = useState(1)
   const [onAddToCart, setOnAddToCart] = useState(false)
   const setToCart  = cartStore(state => state.addToCart)
+  const addToLikes = likeStore(state => state.addToLikes)
+  const checkLike = likeStore(state => state.checkLike)
+  const fetchLikes = likeStore(state => state.fetchLikes)
+  const [like, setLike] = useState(false)
 
   useEffect(() => {
+    fetchLikes(auth.token)
+
     getDetailProduct(param.id).then((response) => {
       setDetailProduct(response)
     })
@@ -30,8 +39,10 @@ export default function DetailProduct() {
     getProductsDetailPage().then((response) => {
       setProducts(response)
     })
-  }, [param])
 
+    const liked = checkLike(param.id)
+    setLike(liked)
+  }, [param, fetchLikes])
   
   let getSizes
   if (detailProduct.additional) {
@@ -61,6 +72,11 @@ export default function DetailProduct() {
         auth.logOut()
       }
     }
+  }
+
+  const handleLike = () => {
+    addToLikes(auth.token, detailProduct.id)
+    setLike(!like)
   }
 
   const breadcrumb = [
@@ -142,9 +158,14 @@ export default function DetailProduct() {
                     </button>
                   </div>
 
-                  <div className="border border-black rounded-lg flex px-2 items-center">
-                    <CiHeart className="text-3xl"/>
-                  </div>
+                  <motion.div
+                    className="border border-black !rounded-lg flex px-2 items-center"
+                    whileHover={{ scale: 1.2, rotate: 0 }}
+                    whileTap={{ scale: 0.8, rotate: -90, borderRadius: "100%" }}
+                  >
+                    {!like && <CiHeart onClick={handleLike} className="text-3xl cursor-pointer"/>}
+                    {like && <IoMdHeart onClick={handleLike} className="text-3xl text-red-500 cursor-pointer"/>}
+                  </motion.div>
                 </div>
 
               </div>

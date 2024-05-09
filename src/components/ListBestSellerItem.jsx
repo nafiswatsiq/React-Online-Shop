@@ -1,13 +1,30 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { CiStar } from "react-icons/ci"
 import { LuArrowLeftRight } from "react-icons/lu"
 import { SlEye } from "react-icons/sl"
 import { Link } from "react-router-dom"
 import { formatThousands } from "../Utils/NumberUtils"
+import { CiHeart } from "react-icons/ci"
+import likeStore from "../hooks/LikeHook"
+import { useAuth } from "../hooks/AuthProvider"
+import { IoMdHeart } from "react-icons/io"
 
 export default function ListBestSellerItem(props) {
-
+  const auth = useAuth()
+  const checkLike = likeStore(state => state.checkLike)
+  const addToLikes = likeStore(state => state.addToLikes)
+  const [like, setLike] = useState(false)
   const [hover, setHover] = useState(false)
+
+  useEffect(() => {
+   const check = checkLike(props.product.id)
+    setLike(check)
+  }, [checkLike])
+
+  const likeProduct = async() => {
+    addToLikes(auth.token, props.product.id)
+    setLike(!like)
+  }
 
   return (
     <div onMouseEnter={() => setHover(!hover)} onMouseLeave={() => setHover(!hover)} className="">
@@ -17,9 +34,14 @@ export default function ListBestSellerItem(props) {
           {hover && <div className="absolute w-full h-full bg-[#ffffff62] top-0 p-4">
             <div className="flex flex-col justify-between h-full">
               <div className="flex flex-col items-end gap-y-3">
-                <span className="p-1 bg-white rounded-full">
-                  <CiStar className="w-5 h-5"/>
+                {like && <span className="p-1 bg-white rounded-full cursor-pointer">
+                  <IoMdHeart onClick={likeProduct} className="w-5 h-5 text-red-500"/>
                 </span>
+                }
+                {!like && <span className="p-1 bg-white rounded-full cursor-pointer">
+                  <CiHeart onClick={likeProduct} className="w-5 h-5"/>
+                </span>
+                }
                 <span className="p-1.5 bg-white rounded-full">
                   <LuArrowLeftRight className="w-4 h-4"/>
                 </span>
