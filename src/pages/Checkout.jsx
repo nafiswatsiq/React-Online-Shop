@@ -1,11 +1,10 @@
 import { Table } from "flowbite-react";
 import BreadcrumbMenu from "../components/BreadrumbMenu";
 import CheckoutTableItem from "../components/CheckoutTableItem";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAuth } from "../hooks/AuthProvider";
-import { getCart } from "../api/Cart";
 import cartStore from "../hooks/CartStore";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { formatThousands } from "../Utils/NumberUtils"
 
 export default function Checkout() {
