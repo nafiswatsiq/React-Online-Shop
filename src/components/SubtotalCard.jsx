@@ -14,6 +14,8 @@ export default function SubtotalCard() {
   const [costs, setCosts] = useState([])
   const [costSelected, setCostSelected] = useState()
   const [defaultValueCost, setDefaultValueCost] = useState(null)
+  const setStep = addressHook(state => state.setStep)
+  const step = addressHook(state => state.step)
   
   useEffect(() => {
     getExpedition(auth.token).then((response) => {
@@ -41,7 +43,7 @@ export default function SubtotalCard() {
   }
 
   const onInputChangeExpedition = () => {
-    setCostSelected([])
+    setCostSelected()
     setDefaultValueCost(null)
   }
 
@@ -120,6 +122,26 @@ export default function SubtotalCard() {
             <p>Rp. {formatThousands(dataCart.reduce((total, item) => total + item.price * item.quantity, 0) + (!costSelected ? 0 : costSelected.value))}</p>
           </div>
         </div>
+
+        {costSelected && (
+        <div className="mt-4">
+            {step == 1 && (
+              <button onClick={() => setStep(2)} type="button" className="bg-black text-white w-full text-sm py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black">
+                Next to Payment
+              </button>
+            )}
+            {step == 2 && (
+              <button onClick={() => setStep(3)} type="button" className="bg-black text-white w-full text-sm py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black">
+                Next to Review
+              </button>
+            )}
+            {step == 3 && (
+              <button onClick={() => setStep(2)} type="button" className="bg-black text-white w-full text-sm py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black">
+                Back to Payment
+              </button>
+            )}
+        </div>
+        )}
       </div>
     </div>
   )

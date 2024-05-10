@@ -94,7 +94,7 @@ export default function AddNewAddress() {
         <p className="my-3 font-bold text-lg">Add New Address</p>
         <div className="border p-8 rounded-lg">
           <form onSubmit={handleSubmit}>
-            <div className="grid gap-6 mb-6 md:grid-cols-2">
+            <div className="grid gap-6 mb-6 md:grid-cols-1">
               <div>
                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Name</label>
                 <input onChange={handleInput} type="text" name='name' id="name" className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black" placeholder="John" required />

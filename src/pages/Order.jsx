@@ -7,6 +7,7 @@ import StepAddress from "../components/StepAddress";
 import StepPayment from "../components/StepPayment";
 import StepReview from "../components/StepReview";
 import SubtotalCard from "../components/SubtotalCard";
+import addressHook from "../hooks/AddressHook";
 
 const breadcrumb = [
   {
@@ -24,7 +25,9 @@ const breadcrumb = [
 ]
 
 export default function Order() {
-  const [step, setStep] = useState(1)
+  // const [step, setStep] = useState(1)
+  const step = addressHook(state => state.step)
+  const setStep = addressHook(state => state.setStep)
 
   return (
     <>
