@@ -1,4 +1,4 @@
-import { React } from 'react'
+import { React, useState } from 'react'
 // Import Swiper React components
 // import Swiper core and required modules
 import { Navigation, A11y } from 'swiper/modules';
@@ -10,14 +10,25 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import SliderByCategoryNavBtn from './SliderByCategoryNavBtn';
 import { Link } from 'react-router-dom';
+import Skeleton from './Skeleton';
 
 export default function SliderByCategories(props) {
-  
+  const [ loading, setLoading ] = useState(true)
+  const [ categories, setCategories ] = useState([])
+
+  setTimeout(() => {
+    setLoading(false)
+    setCategories(props.categories)
+  }, 3000)
+
   return (
     <div>
       <div className='mb-8'>
         <p className="text-3xl">Shop by Categories</p>
       </div>
+      {loading && 
+        <Skeleton length={4} cols={4}/>
+      }
       <Swiper
         modules={[Navigation, A11y]}
         spaceBetween={30}
@@ -26,7 +37,7 @@ export default function SliderByCategories(props) {
         // onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}
       >
-        {props.categories.map((category, index) => (
+        {categories.map((category, index) => (
           <SwiperSlide key={index}>
             <Link to={`/products?category=${category.slug}`} className='relative'>
               <img src={category.image} alt="" loading='lazy'/>
