@@ -4,7 +4,7 @@ import { deleteAddress, getListAddress, postAddress } from "../api/Address";
 const addressHook = create(set => ({
   address: [],
   idAddress: null,
-  step: 2,
+  step: 1,
   fetchAddress: async (token) => {
     try {
       const addressData = await getListAddress(token)

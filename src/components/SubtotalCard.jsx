@@ -5,6 +5,7 @@ import { formatThousands } from "../Utils/NumberUtils"
 import Select from 'react-select'
 import { getCost, getExpedition } from "../api/Ongkir"
 import { useAuth } from "../hooks/AuthProvider"
+import paymentHook from "../hooks/PaymentHook"
 
 export default function SubtotalCard() {
   const auth = useAuth()
@@ -16,6 +17,7 @@ export default function SubtotalCard() {
   const [defaultValueCost, setDefaultValueCost] = useState(null)
   const setStep = addressHook(state => state.setStep)
   const step = addressHook(state => state.step)
+  const payment = paymentHook(state => state.payment)
   
   useEffect(() => {
     getExpedition(auth.token).then((response) => {
@@ -45,6 +47,16 @@ export default function SubtotalCard() {
   const onInputChangeExpedition = () => {
     setCostSelected()
     setDefaultValueCost(null)
+  }
+
+  const handleNextStep = () => {
+    if(step == 1) {
+      idAddress == null ? alert("Please Select Address") : setStep(2)
+    } else if(step == 2) {
+      payment.cardNumber.length < 16 ? alert("Please input card number") : setStep(3)
+    } else if(step == 3) {
+      setStep(2)
+    }
   }
 
   return (
@@ -126,18 +138,18 @@ export default function SubtotalCard() {
         {costSelected && (
         <div className="mt-4">
             {step == 1 && (
-              <button onClick={() => setStep(2)} type="button" className="bg-black text-white w-full text-sm py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black">
+              <button onClick={handleNextStep} type="button" className="bg-black text-white w-full text-sm py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black">
                 Next to Payment
               </button>
             )}
             {step == 2 && (
-              <button onClick={() => setStep(3)} type="button" className="bg-black text-white w-full text-sm py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black">
+              <button onClick={handleNextStep} type="button" className="bg-black text-white w-full text-sm py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black">
                 Next to Review
               </button>
             )}
             {step == 3 && (
-              <button onClick={() => setStep(2)} type="button" className="bg-black text-white w-full text-sm py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black">
-                Back to Payment
+              <button onClick={handleNextStep} type="button" className="bg-black text-white w-full text-sm py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black">
+                Place Order
               </button>
             )}
         </div>
