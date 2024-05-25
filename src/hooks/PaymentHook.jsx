@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const paymentHook = create(set => ({
-  payment: [],
+  payment: null,
   setPayment: (payment) => set({ payment })
 }))
 
