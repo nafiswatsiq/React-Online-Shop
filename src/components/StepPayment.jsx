@@ -1,8 +1,11 @@
 import { useState } from "react"
 import paymentHook from "../hooks/PaymentHook"
+import addressHook from "../hooks/AddressHook"
 
 export default function StepPayment() {
   const setPayment = paymentHook(state => state.setPayment)
+  // const {payment} = paymentHook()
+  // console.log(payment)
 
   const [input, setInput] = useState({
     cardNumber: "",

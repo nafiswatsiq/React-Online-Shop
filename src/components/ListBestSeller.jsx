@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ListBestSellerItem from "./ListBestSellerItem";
 import Skeleton from "./Skeleton";
 
-export default function ListBestSeller(props) {
+export default function ListBestSeller({products}) {
   const [loading, setLoading] = useState(true)
-  const [ products, setProducts ] = useState([])
+  const [ dProducts, setProducts ] = useState([])
 
-  setTimeout(() => {
-    setLoading(false)
-    setProducts(props.products)
-  }, 3000)
+  // setTimeout(() => {
+  //   setLoading(false)
+  //   setProducts(props.products)
+  // }, 3000)
+  useEffect(() => {
+    if(products.length > 0) {
+      setLoading(false)
+      setProducts(products)
+    }
+  }, [products])
+  
   return (
     <>
       <div className="mt-16">
@@ -18,7 +25,7 @@ export default function ListBestSeller(props) {
         )}
       </div>
       <div className="grid grid-cols-4 gap-8 my-16">
-        {products.map((product) => (
+        {dProducts.map((product) => (
           <ListBestSellerItem key={product.id} product={product} />
         ))}
       </div>
