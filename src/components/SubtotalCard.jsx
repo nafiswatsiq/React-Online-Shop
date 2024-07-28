@@ -113,7 +113,7 @@ export default function SubtotalCard() {
               <p>Delivery Charge</p>
             </div>
             <div>
-              <p>Rp. {!costSelected ? 0 : costSelected.value}</p>
+              <p>Rp. {!costSelected ? 0 : formatThousands(costSelected.value)}</p>
             </div>
           </div>
           <div className="flex justify-between text-sm py-3 border-b">

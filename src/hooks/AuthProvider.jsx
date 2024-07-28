@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { getUser, login, logout, register } from "../api/Authenticate"
+import { getUser, login, loginGoogle, logout, register } from "../api/Authenticate"
 import cartStore from "./CartStore"
 
 const AuthContext = createContext()
@@ -92,7 +92,39 @@ const AuthProvider = ({ children }) => {
     }
   }
 
-  return <AuthContext.Provider value={{ token, user, loginAction, logOut, registerAction }}>{children}</AuthContext.Provider>
+  const loginGoogleAction = async (data) => {
+    try {
+      const expirationDate = new Date().getTime() + (3 * 60 * 60 * 1000)
+      const res = await loginGoogle(data)
+
+      if (res.error == false) {
+        const user = res.user
+        user.expiresAt = expirationDate
+
+        setUser(user)
+        setToken(res.token)
+        localStorage.setItem("user", JSON.stringify(user))
+        localStorage.setItem("site", res.token)
+
+        fetchCart(res.token)
+
+        navigate("/")
+        
+        return {
+          error: false
+        }
+      }
+
+      throw new Error(res.message)
+    } catch (err) {
+      return {
+        error: true,
+        message: err.message
+      }
+    }
+  }
+
+  return <AuthContext.Provider value={{ token, user, loginAction, logOut, registerAction, loginGoogleAction }}>{children}</AuthContext.Provider>
 }
 
 export default AuthProvider

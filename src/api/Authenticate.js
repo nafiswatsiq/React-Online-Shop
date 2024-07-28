@@ -55,9 +55,20 @@ const getUser = async (token) => {
   return res.data
 }
 
+const loginGoogle = async (data) => {
+  try {
+    const res = await axios.post(`${apiUrl}/auth/google`, data)
+
+    return res.data
+  } catch (err) {
+    return err.response.data
+  }
+}
+
 export {
   login,
   logout,
   register,
-  getUser
+  getUser,
+  loginGoogle
 }

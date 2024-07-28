@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useAuth } from "../hooks/AuthProvider"
 import { Link, Navigate } from "react-router-dom"
 import ScrollToTop from "../components/ScrollToTop"
+import { GoogleLogin, useGoogleLogin } from "@react-oauth/google"
+import SignInGoogleBtn from "../components/SignInGoogleBtn"
 
 export default function Login() {  
   const auth = useAuth()
@@ -76,6 +78,8 @@ export default function Login() {
                   <Link to={'/'} className="text-sm font-medium text-black hover:underline dark:text-primary-500">Forgot password?</Link>
                 </div>
                 <button type="submit" disabled={onSubmitting} className={`w-full text-white bg-black hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center ${onSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}>Sign in</button>
+
+                <SignInGoogleBtn title={'Sign in with Google'}/>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet? <Link to={'/register'} className="font-medium text-black hover:underline dark:text-primary-500">Sign up</Link>
                 </p>

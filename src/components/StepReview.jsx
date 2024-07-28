@@ -10,6 +10,8 @@ export default function StepReview() {
   const addressSelected = address.find(item => item.id === selectedIdAddress.id)
   const payment = paymentHook(state => state.payment)
 
+  console.log(cart, addressSelected, payment)
+
   return (
     <div>
       <h1 className="font-bold text-xl">Review Order</h1>

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useAuth } from "../hooks/AuthProvider"
 import { Link, Navigate } from "react-router-dom"
+import SignInGoogleBtn from "../components/SignInGoogleBtn"
 
 export default function Register() {  
   const auth = useAuth()
@@ -85,6 +86,8 @@ export default function Register() {
                 </div>
               </div>
               <button type="submit" className="w-full text-white bg-black hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Create an Account</button>
+              
+              <SignInGoogleBtn title={'Sign up with Google'}/>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
               Already have an account? <Link to={'/login'} className="font-medium text-black hover:underline dark:text-primary-500">Login here</Link>
               </p>

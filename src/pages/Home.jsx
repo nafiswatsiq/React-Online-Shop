@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { getCategory, getProducts } from "../api/Home"
 import { motion } from "framer-motion"
+import Banner from "../components/Banner"
 
 export default function Home() {
   const [categories, setCategories] = useState([])
@@ -77,6 +78,10 @@ export default function Home() {
             <img src={MainImg} alt=""  className=""/>
           </div>
         </div>
+      </div>
+
+      <div className="max-w-[70rem] mx-auto py-10">
+        <Banner/>
       </div>
 
       <div className="max-w-[70rem] mx-auto py-10">
