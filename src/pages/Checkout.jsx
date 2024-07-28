@@ -90,11 +90,17 @@ export default function Checkout() {
                       </div>
                     </div>
                     <div className="mt-1">
-                      <Link to={'/order'}>
-                        <button type="button" className="bg-black text-white w-full text-sm py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black">
+                      {dataCart.length > 0 ?
+                        <Link to={'/order'}>
+                          <button type="button" className="bg-black text-white w-full text-sm py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black">
+                            Proceed to Checkout
+                          </button>
+                        </Link>
+                      :
+                        <button type="button" className="bg-gray-400 text-white w-full text-sm py-2.5 rounded-lg focus:outline-none cursor-default">
                           Proceed to Checkout
                         </button>
-                      </Link>
+                      }
                     </div>
                   </div>
               </div>

@@ -87,6 +87,8 @@ export default function AddNewAddress() {
       setOnSubmitting(false)
       alert('Failed to add new address')
     }
+
+    window.scrollTo(0, 0);
   }
 
   return (

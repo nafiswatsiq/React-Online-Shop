@@ -37,17 +37,21 @@ export default function MiniCart() {
           <MiniCartItem item={item}/>
         </Dropdown.Item>
       ))}
-      {dataCart.length > 0 && 
-        <Dropdown.Item className="flex flex-col">
-          <div className="flex justify-between items-center mb-3 mt-1 w-full">
-            <span className="font-bold">Total</span>
-            <span>Rp. {formatThousands(dataCart.reduce((total, item) => total + item.price * item.quantity, 0))}</span>
-          </div>
+      <Dropdown.Item className="flex flex-col">
+        <div className="flex justify-between items-center mb-3 mt-1 w-full">
+          <span className="font-bold">Total</span>
+          <span>Rp. {formatThousands(dataCart.reduce((total, item) => total + item.price * item.quantity, 0))}</span>
+        </div>
+        {dataCart.length > 0 ?
           <Link to={'/checkout'} className="w-full py-2.5 text-sm font-medium text-white focus:outline-none bg-black rounded-lg hover:bg-gray-900">
             Checkout
           </Link>
-        </Dropdown.Item>
-      }
+          : 
+          <button className="w-full py-2.5 text-sm font-medium text-white focus:outline-none bg-gray-400 rounded-lg cursor-default">
+            Checkout
+          </button>
+        }
+      </Dropdown.Item>
     </Dropdown>
   )
 }
